@@ -1,13 +1,13 @@
-name: SuperSonic feature request
-description: Suggest an idea for SuperSonic
-title: "[Feature] "
-labels: ["kind/feature"]
+name: SuperSonic enhancement
+description: Add an enhanment for SuperSonic
+title: "[Enhancement] "
+labels: enhancement
+
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you very much for your good ideas and suggestions for SuperSonic
-
+        Thank you very much for your good enhancement for SuperSonic.
   - type: checkboxes
     attributes:
       label: Search before asking
@@ -23,18 +23,15 @@ body:
   - type: textarea
     attributes:
       label: Description
-      description: Describe your ideas and needs.
+      description: Describe the enhancement what you want, including motivation if it exists.
 
   - type: textarea
     attributes:
-      label: Use case
+      label: Solution
       placeholder: >
-        What problem does this feature mainly solve, or what scenarios it is suitable for.
+        Add overview of proposed solution. 
 
-  - type: textarea
-    attributes:
-      label: Related issues
-      description: Is there currently another issue associated with this?
+        Add related materials like links if they exist.
 
   - type: checkboxes
     attributes:
