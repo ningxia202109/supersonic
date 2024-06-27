@@ -6,17 +6,24 @@ server:
     mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain,text/css,image/*
 
 spring:
-  h2:
-    console:
-      path: /h2-console/semantic
-      enabled: true
+  # h2:
+  #   console:
+  #     path: /h2-console/semantic
+  #     enabled: true
+  # datasource:
+  #   driver-class-name: org.h2.Driver
+  #   schema: classpath:db/schema-h2.sql
+  #   data: classpath:db/data-h2.sql
+  #   url: jdbc:h2:mem:semantic;DATABASE_TO_UPPER=false
+  #   username: root
+  #   password: semantic
+
   datasource:
-    driver-class-name: org.h2.Driver
-    schema: classpath:db/schema-h2.sql
-    data: classpath:db/data-h2.sql
-    url: jdbc:h2:mem:semantic;DATABASE_TO_UPPER=false
+    url: jdbc:mysql://localhost:3306/supersonic_demo_1?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
-    password: semantic
+    password: root12345
+    driver-class-name: com.mysql.jdbc.Driver
+
   autoconfigure:
     exclude:
       - spring.dev.langchain4j.spring.LangChain4jAutoConfig
