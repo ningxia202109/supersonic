@@ -2,21 +2,25 @@
     "name": "s3-BI-dev",
     "image": "mcr.microsoft.com/devcontainers/universal:2",
     "features": {},
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "cweijan.vscode-mysql-client2",
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven",
+                "vscjava.vscode-java-dependency",
+                "vscjava.vscode-java-test",
+                "redhat.java",
+                "vmware.vscode-boot-dev-pack",
+                "vmware.vscode-spring-boot",
+                "vscjava.vscode-spring-initializr"
+            ]
+        }
     },
-    "extensions": [
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
-        "cweijan.vscode-mysql-client2",
-        "vscjava.vscode-java-pack",
-        "vscjava.vscode-maven",
-        "vscjava.vscode-java-dependency",
-        "vscjava.vscode-java-test",
-        "redhat.java",
-        "vmware.vscode-boot-dev-pack",
-        "vmware.vscode-spring-boot",
-        "vscjava.vscode-spring-initializr"
-    ],
     "remoteUser": "root"
 }
