@@ -16,8 +16,6 @@ services:
         condition: service_healthy
       mysql:
         condition: service_healthy
-      # db_init:
-      #   condition: service_completed_successfully
     volumes:
       - ../..:/workspaces:cached
     ports:
@@ -36,7 +34,7 @@ services:
     networks:
       - supersonic_network
     depends_on:
-      - supersoni_be
+      - supersonic_be
     volumes:
       - ../:/workspace:cached
   
@@ -71,8 +69,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ../launchers/standalone/src/main/resources/db/schema-mysql.sql:/docker-entrypoint-initdb.d/schema.sql
-      - ../launchers/standalone/src/main/resources/db/data-mysql.sql:/docker-entrypoint-initdb.d/data.sql
+      - ../launchers/standalone/src/main/resources/db/schema-mysql.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ../launchers/standalone/src/main/resources/db/data-mysql.sql:/docker-entrypoint-initdb.d/2-data.sql
     networks:
       - supersonic_network
     dns:
@@ -87,29 +85,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  
-  # db_init:
-  #   image: supersonicbi/supersonic:${SUPERSONIC_VERSION:-latest}
-  #   container_name: supersonic_db_init
-  #   depends_on:
-  #     mysql:
-  #       condition: service_healthy
-  #   networks:
-  #     - supersonic_network
-  #   command: >
-  #     sh -c "
-  #     sleep 15 &&
-  #     if ! mysql -h supersonic_mysql -usupersonic_user -psupersonic_password -e 'use supersonic_db; show tables;' | grep -q 'supersoni_database'; then
-  #       mysql -h supersonic_mysql -usupersonic_user -psupersonic_password supersonic_db < /usr/src/app/supersonic-standalone-${SUPERSONIC_VERSION:-latest}/conf/db/schema-mysql.sql &&
-  #       mysql -h supersonic_mysql -usupersonic_user -psupersonic_password supersonic_db < /usr/src/app/supersonic-standalone-${SUPERSONIC_VERSION:-latest}/conf/db/data-mysql.sql
-  #     else
-  #       echo 'Database already initialized.'
-  #     fi
-  #     "
-  #   dns:
-  #     - 114.114.114.114
-  #     - 8.8.8.8
-  #     - 8.8.4.4
 
 volumes:
   mysql_data:
