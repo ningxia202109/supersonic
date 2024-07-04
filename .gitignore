@@ -20,3 +20,6 @@ chm_db/
 __pycache__/
 /dict
 assembly/build/*-SNAPSHOT
+
+.devcontainer/backup-singal/
+.pnpm-store/
