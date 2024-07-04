@@ -1,0 +1,36 @@
+{
+    "name": "supersonic-BI-dev",
+    "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+    // "dockerComposeFile": "docker-compose.yaml",
+    // "service": "supersonic_be",
+    "features": {},
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                // Tools
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "cweijan.vscode-mysql-client2",
+                "ms-azuretools.vscode-docker",
+                // Java
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven",
+                "vscjava.vscode-java-dependency",
+                "vscjava.vscode-java-test",
+                "redhat.java",
+                // Springboot
+                "vmware.vscode-boot-dev-pack",
+                "vmware.vscode-spring-boot",
+                "vscjava.vscode-spring-initializr",
+                // Git
+                "eamodio.gitlens"
+            ]
+        }
+    },
+    "forwardPorts": [9080,9000,8000,3306],
+    "remoteUser": "root"
+}
