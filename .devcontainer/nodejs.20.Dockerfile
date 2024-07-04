@@ -5,4 +5,4 @@ WORKDIR /workspace
 
 EXPOSE 9000
 
-# CMD [ "sh -c", "start-fe-dev.sh" ]
+CMD ["sh", "-c", "cd ./webapp && ./start-fe-dev.sh"]

@@ -1,13 +1,8 @@
 {
-    "name": "s3-BI-dev",
-    // "image": "mcr.microsoft.com/devcontainers/universal:2",
-    // "build": {
-    //     "context": "..",
-    //     "dockerfile": "Dockerfile"
-    // },
+    "name": "supersonic-BI-dev",
     "dockerComposeFile": "docker-compose.yaml",
     "features": {},
-    "service": "supersoni_be",
+    "service": "supersonic_be",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "customizations": {
         "vscode": {

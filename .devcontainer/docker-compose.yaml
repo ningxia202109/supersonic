@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  supersoni_be:
+  supersonic_be:
     build:
       context: .
       dockerfile: jdk.8.Dockerfile
@@ -24,9 +24,9 @@ services:
       - "9080:9080"
     command: sleep infinity
     networks:
-      - supersoni_network
+      - supersonic_network
 
-  supersoni_fe:
+  supersonic_fe:
     build:
       context: .
       dockerfile: nodejs.20.Dockerfile
@@ -34,7 +34,7 @@ services:
       - "9000:9000"
     command: sleep infinity
     networks:
-      - supersoni_network
+      - supersonic_network
     depends_on:
       - supersoni_be
     volumes:
@@ -48,7 +48,7 @@ services:
     volumes:
       - chroma_data:/chroma
     networks:
-      - supersoni_network
+      - supersonic_network
     dns:
       - 114.114.114.114
       - 8.8.8.8
@@ -68,12 +68,13 @@ services:
       MYSQL_USER: supersonic_user
       MYSQL_PASSWORD: supersonic_password
     ports:
-      - "13306:3306"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ../:/data
+      - ../launchers/standalone/src/main/resources/db/schema-mysql.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ../launchers/standalone/src/main/resources/db/data-mysql.sql:/docker-entrypoint-initdb.d/data.sql
     networks:
-      - supersoni_network
+      - supersonic_network
     dns:
       - 114.114.114.114
       - 8.8.8.8
@@ -94,7 +95,7 @@ services:
   #     mysql:
   #       condition: service_healthy
   #   networks:
-  #     - supersoni_network
+  #     - supersonic_network
   #   command: >
   #     sh -c "
   #     sleep 15 &&
@@ -115,4 +116,4 @@ volumes:
   chroma_data:
 
 networks:
-  supersoni_network:
+  supersonic_network:

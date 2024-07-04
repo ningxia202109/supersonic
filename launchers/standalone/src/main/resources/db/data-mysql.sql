@@ -1,5 +1,5 @@
 -- sample user
----The default value for the password is 123456
+-- The default value for the password is 123456
 insert into s2_user (id, `name`, password, salt, display_name, email, is_admin) values (1, 'admin','c3VwZXJzb25pY0BiaWNvbdktJJYWw6A3rEmBUPzbn/6DNeYnD+y3mAwDKEMS3KVT','jGl25bVBBBW96Qi9Te4V3w==','admin','admin@xx.com', 1);
 insert into s2_user (id, `name`, password, salt,  display_name, email) values (2, 'jack','c3VwZXJzb25pY0BiaWNvbWxGalmwa0h/trkh/3CWOYMDiku0Op1VmOfESIKmN0HG','MWERWefm/3hD6kYndF6JIg==','jack','jack@xx.com');
 insert into s2_user (id, `name`, password, salt,  display_name, email) values (3, 'tom','c3VwZXJzb25pY0BiaWNvbVWv0CZ6HzeX8GRUpw0C8NSaQ+0hE/dAcmzRpCFwAqxK','4WCPdcXXgT89QDHLML+3hg==','tom','tom@xx.com');
