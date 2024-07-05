@@ -14,3 +14,13 @@ cp codespace-devcontainer.json .devcontainer/devcontainer.json
 docker-compose -f build
 docker-compose up -d
 ```
+
+## Test Ollama
+```
+# Check Ollama version
+curl -v http://localhost:11434/api/version
+
+# prompt for llm-model qwen:0.5b https://ollama.com/library/qwen2:0.5b
+curl -X POST http://localhost:11434/api/generate \
+-d '{"model": "qwen:0.5b","prompt":"what is qwen?"}'
+```
