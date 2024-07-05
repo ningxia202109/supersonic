@@ -29,6 +29,7 @@ logging:
   level:
     dev.langchain4j: DEBUG
     dev.ai4j.openai4j: DEBUG
+    com.tencent.supersonic.headless.core.translator: DEBUG
 
 swagger:
   title: 'SuperSonic API Documentation'
