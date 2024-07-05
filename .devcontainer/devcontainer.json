@@ -31,6 +31,6 @@
             ]
         }
     },
-    "forwardPorts": [9080,9000,8000,3306],
+    "forwardPorts": [9080,9000,8000,3306,11434],
     "remoteUser": "root"
 }
