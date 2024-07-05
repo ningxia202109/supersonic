@@ -102,14 +102,19 @@ public class LLMRequestService {
         llmReq.setCurrentDate(DateUtils.getBeforeDate(0));
         llmReq.setSqlGenType(LLMReq.SqlGenType.valueOf(parserConfig.getParameterValue(PARSER_STRATEGY_TYPE)));
         llmReq.setLlmConfig(queryCtx.getLlmConfig());
-
-        llmReq.setExemplars(queryCtx.getExemplars());
+        llmReq.setPromptConfig(queryCtx.getPromptConfig());
+        llmReq.setDynamicExemplars(queryCtx.getDynamicExemplars());
 
         return llmReq;
     }
 
     public LLMResp runText2SQL(LLMReq llmReq) {
-        return ComponentFactory.getLLMProxy().text2sql(llmReq);
+        SqlGenStrategy sqlGenStrategy = SqlGenStrategyFactory.get(llmReq.getSqlGenType());
+        String modelName = llmReq.getSchema().getDataSetName();
+        LLMResp result = sqlGenStrategy.generate(llmReq);
+        result.setQuery(llmReq.getQueryText());
+        result.setModelName(modelName);
+        return result;
     }
 
     protected List<String> getFieldNameList(QueryContext queryCtx, Long dataSetId,
