@@ -94,7 +94,7 @@ services:
     image: ollama
     container_name: ollama
     environment:
-      - LLM_MODEL=qwen:0.5b
+      - LLM_MODEL=qwen:0.5b # qwen:0.5b is a small model, size is 352MB
     volumes:
       - ollama_data:/root/.ollama
     ports:
