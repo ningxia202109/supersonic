@@ -1,9 +1,8 @@
 #!/bin/bash
-# Start Ollama in the background
-ollama &
+/bin/ollama serve &
 
 # Wait a little for Ollama to fully start
-sleep 10
+sleep 30
 
 # Use environment variable for model name
 MODEL_NAME=${LLM_MODEL}
@@ -16,5 +15,4 @@ else
   echo "${MODEL_NAME} model already pulled. Skipping..."
 fi
 
-# Keep the container running after the script completes
-wait
+sleep infinity
