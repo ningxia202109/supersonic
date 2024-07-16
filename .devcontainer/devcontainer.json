@@ -1,6 +1,11 @@
 {
     "name": "supersonic-BI-dev",
-    "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+    // "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+    "image": "mcr.microsoft.com/vscode/devcontainers/java:dev-8",
+    // "build": {
+    //     "dockerfile": "./docker-dev/jdk.8.Dockerfile",
+    //     "context": ".."
+    //   },
     // "dockerComposeFile": "docker-compose.yaml",
     // "service": "supersonic_be",
     "features": {},
