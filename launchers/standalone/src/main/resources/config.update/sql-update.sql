@@ -357,3 +357,9 @@ alter table s2_agent add `model_config` text null;
 
 --20240710
 alter table s2_agent add `enable_memory_review` tinyint DEFAULT 0;
+
+--20240718
+alter table s2_chat_memory add `side_info` TEXT DEFAULT NULL COMMENT '辅助信息';
+
+--20240730
+alter table s2_chat_parse modify column `chat_id` int(11);

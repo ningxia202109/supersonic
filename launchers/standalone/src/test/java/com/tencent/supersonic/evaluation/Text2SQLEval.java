@@ -9,7 +9,7 @@ import com.tencent.supersonic.chat.server.agent.AgentToolType;
 import com.tencent.supersonic.chat.server.agent.MultiTurnConfig;
 import com.tencent.supersonic.chat.server.agent.RuleParserTool;
 import com.tencent.supersonic.common.pojo.ChatModelConfig;
-import com.tencent.supersonic.headless.api.pojo.response.QueryResult;
+import com.tencent.supersonic.chat.api.pojo.response.QueryResult;
 import com.tencent.supersonic.util.DataUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -76,6 +76,24 @@ public class Text2SQLEval extends BaseTest {
         assert result.getQueryColumns().size() == 2;
         assert result.getQueryColumns().get(0).getName().contains("用户");
         assert result.getQueryColumns().get(1).getName().contains("访问次数");
+        assert result.getQueryResults().size() == 2;
+    }
+
+    @Test
+    public void test_filter_compare() throws Exception {
+        QueryResult result = submitNewChat("alice和lucy过去半个月哪一位的总停留时长更高", agentId);
+        assert result.getQueryColumns().size() == 2;
+        assert result.getQueryColumns().get(0).getName().contains("用户");
+        assert result.getQueryColumns().get(1).getName().contains("停留时长");
+        assert result.getQueryResults().size() >= 1;
+    }
+
+    @Test
+    public void test_term() throws Exception {
+        QueryResult result = submitNewChat("过去半个月核心用户的总停留时长", agentId);
+        assert result.getQueryColumns().size() == 2;
+        assert result.getQueryColumns().get(0).getName().contains("用户");
+        assert result.getQueryColumns().get(1).getName().contains("停留时长");
         assert result.getQueryResults().size() == 2;
     }
 

@@ -142,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `s2_chat_config` (
 CREATE TABLE IF NOT EXISTS `s2_chat_memory` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `question` varchar(655)   COMMENT '用户问题' ,
+    `side_info` TEXT COMMENT '辅助信息' ,
     `agent_id`  INT    COMMENT '助理ID' ,
     `db_schema`  TEXT    COMMENT 'Schema映射' ,
     `s2_sql` TEXT   COMMENT '大模型解析SQL' ,
@@ -168,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `s2_chat_context` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `s2_chat_parse` (
-     `question_id` bigint(20) NOT NULL,
-     `chat_id` bigint(20) NOT NULL,
+     `question_id` bigint NOT NULL,
+     `chat_id` int(11) NOT NULL,
      `parse_id` int(11) NOT NULL,
      `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
      `query_text` varchar(500) DEFAULT NULL,

@@ -8,13 +8,12 @@ import com.tencent.supersonic.chat.server.service.ChatQueryService;
 import com.tencent.supersonic.headless.api.pojo.SchemaElement;
 import com.tencent.supersonic.headless.api.pojo.SemanticParseInfo;
 import com.tencent.supersonic.headless.api.pojo.response.ParseResp;
-import com.tencent.supersonic.headless.api.pojo.response.QueryResult;
+import com.tencent.supersonic.chat.api.pojo.response.QueryResult;
 import com.tencent.supersonic.headless.api.pojo.response.QueryState;
 import com.tencent.supersonic.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -50,7 +49,7 @@ public class BaseTest extends BaseApplication {
     }
 
     protected QueryResult submitNewChat(String queryText, Integer agentId) throws Exception {
-        int chatId = 10;
+        int chatId = DataUtils.ONE_TURNS_CHAT_ID;
         ParseResp parseResp = submitParse(queryText, agentId, chatId);
 
         SemanticParseInfo parseInfo = parseResp.getSelectedParses().get(0);
@@ -70,20 +69,8 @@ public class BaseTest extends BaseApplication {
     }
 
     protected ParseResp submitParse(String queryText, Integer agentId, Integer chatId) {
-        if (Objects.isNull(chatId)) {
-            chatId = 10;
-        }
         ChatParseReq chatParseReq = DataUtils.getChatParseReq(chatId, queryText);
         chatParseReq.setAgentId(agentId);
-        return chatQueryService.performParsing(chatParseReq);
-    }
-
-    protected ParseResp submitParse(String queryText, Integer agentId) {
-        return submitParse(queryText, agentId, 10);
-    }
-
-    protected ParseResp submitParseWithAgent(String queryText, Integer agentId) {
-        ChatParseReq chatParseReq = DataUtils.getChatParseReqWithAgent(10, queryText, agentId);
         return chatQueryService.performParsing(chatParseReq);
     }
 

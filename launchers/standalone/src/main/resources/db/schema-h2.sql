@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `s2_chat_query`
 CREATE TABLE IF NOT EXISTS `s2_chat_parse`
 (
     `question_id`       BIGINT  NOT NULL,
-    `chat_id`           BIGINT NOT NULL ,
+    `chat_id`           INT NOT NULL ,
     `parse_id`          INT NOT NULL ,
     `create_time`       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `query_text`          varchar(500),
@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `s2_chat_memory` (
     `agent_id`  INT    ,
     `db_schema`  TEXT    ,
     `s2_sql` TEXT   ,
+    `side_info` TEXT    ,
     `status` char(10)   ,
     `llm_review` char(10)   ,
     `llm_comment`   TEXT,

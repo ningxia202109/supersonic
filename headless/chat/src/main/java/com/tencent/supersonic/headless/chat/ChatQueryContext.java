@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tencent.supersonic.auth.api.authentication.pojo.User;
 import com.tencent.supersonic.common.config.PromptConfig;
 import com.tencent.supersonic.common.pojo.ChatModelConfig;
-import com.tencent.supersonic.common.pojo.SqlExemplar;
+import com.tencent.supersonic.common.pojo.Text2SQLExemplar;
 import com.tencent.supersonic.common.pojo.enums.Text2SQLType;
 import com.tencent.supersonic.common.util.ContextUtils;
 import com.tencent.supersonic.headless.api.pojo.QueryDataType;
@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 public class ChatQueryContext {
 
     private String queryText;
+    private String oriQueryText;
     private Set<Long> dataSetIds;
     private Map<Long, List<Long>> modelIdToDataSetIds;
     private User user;
@@ -44,6 +45,7 @@ public class ChatQueryContext {
     private QueryFilters queryFilters;
     private List<SemanticQuery> candidateQueries = new ArrayList<>();
     private SchemaMapInfo mapInfo = new SchemaMapInfo();
+    private SemanticParseInfo contextParseInfo;
     private MapModeEnum mapModeEnum = MapModeEnum.STRICT;
     @JsonIgnore
     private SemanticSchema semanticSchema;
@@ -52,12 +54,11 @@ public class ChatQueryContext {
     private QueryDataType queryDataType = QueryDataType.ALL;
     private ChatModelConfig modelConfig;
     private PromptConfig promptConfig;
-    private List<SqlExemplar> dynamicExemplars;
-    private SemanticParseInfo contextParseInfo;
+    private List<Text2SQLExemplar> dynamicExemplars;
 
     public List<SemanticQuery> getCandidateQueries() {
         ParserConfig parserConfig = ContextUtils.getBean(ParserConfig.class);
-        int parseShowCount = Integer.valueOf(parserConfig.getParameterValue(ParserConfig.PARSER_SHOW_COUNT));
+        int parseShowCount = Integer.parseInt(parserConfig.getParameterValue(ParserConfig.PARSER_SHOW_COUNT));
         candidateQueries = candidateQueries.stream()
                 .sorted(Comparator.comparing(semanticQuery -> semanticQuery.getParseInfo().getScore(),
                         Comparator.reverseOrder()))
